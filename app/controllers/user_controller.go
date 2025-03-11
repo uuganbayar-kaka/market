@@ -73,7 +73,7 @@ func (server *Server) DoRegister(w http.ResponseWriter, r *http.Request) {
 	userModel := models.User{}
 	existUser, _ := userModel.FindByEmail(server.DB, email)
 	if existUser != nil {
-		flash.SetFlash(w, r, "error", "Sorry, email already registered")
+		flash.SetFlash(w, r, "error", "Уучлаарай, Майл хаяг бүртгэлтэй байна.")
 		http.Redirect(w, r, "/register", http.StatusSeeOther)
 		return
 	}
@@ -89,7 +89,7 @@ func (server *Server) DoRegister(w http.ResponseWriter, r *http.Request) {
 
 	user, err := userModel.CreateUser(server.DB, params)
 	if err != nil {
-		flash.SetFlash(w, r, "error", "Sorry, registration failed")
+		flash.SetFlash(w, r, "error", "Уучлаарай, Бүртгэл хийх үед алдаа гарлаа")
 		http.Redirect(w, r, "/register", http.StatusSeeOther)
 		return
 	}

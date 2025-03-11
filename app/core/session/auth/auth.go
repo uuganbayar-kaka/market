@@ -29,7 +29,6 @@ func ComparePassword(password string, hashedPassword string) bool {
 
 func MakePassword(password string) (string, error) {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-
 	return string(hashedPassword), err
 }
 
@@ -39,7 +38,6 @@ func CurrentUser(db *gorm.DB, w http.ResponseWriter, r *http.Request) *models.Us
 	}
 
 	session, _ := store.Get(r, sessionUser)
-
 	userModel := models.User{}
 	user, err := userModel.FindByID(db, session.Values["id"].(string))
 	if err != nil {
@@ -47,6 +45,5 @@ func CurrentUser(db *gorm.DB, w http.ResponseWriter, r *http.Request) *models.Us
 		session.Save(r, w)
 		return nil
 	}
-
 	return user
 }

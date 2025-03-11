@@ -11,7 +11,7 @@ import (
 func AuthMiddleware(next http.HandlerFunc) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if !auth.IsLoggedIn(r) {
-			flash.SetFlash(w, r, "error", "Anda perlu login!")
+			flash.SetFlash(w, r, "error", "Эхлээд нэвтэрнүү!")
 			http.Redirect(w, r, "/login", http.StatusSeeOther)
 			return
 		}
